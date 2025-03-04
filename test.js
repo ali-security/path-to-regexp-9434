@@ -2,6 +2,10 @@ var pathToRegExp = require('./');
 var assert = require('assert');
 
 describe('path-to-regexp', function () {
+  it('should generate a regex without backtracking', function () {
+    assert.deepEqual(pathToRegExp('/:a-:b'), /^(?:\/([^/]+?))-(?:((?:(?!\/|-).)+?))\/?$/i);
+  });
+
   describe('strings', function () {
     it('should match simple paths', function () {
       var params = [];
